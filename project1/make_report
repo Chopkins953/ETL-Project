@@ -1,0 +1,31 @@
+#!/usr/bin/gawk -f
+
+#
+# this script generates a count of the transactions per state
+# it stores this information in an array with the state as the subscript
+# the script then creates a file called transaction-rpt and populates it 
+# with the data collected
+#
+
+
+BEGIN { 
+FS=","
+OFS="\t"
+}
+
+{
+	array[$12] += 1
+}
+
+END {
+print "Transaction Count Report" >> "transaction-rpt"
+print "" >> "transaction-rpt"
+print "State""\t""Transaction Count" >> "transaction-rpt"	
+	for(i in array)
+	{
+		print toupper(i)"\t"array[i] >> "transaction-rpt"
+	}	
+}
+
+
+

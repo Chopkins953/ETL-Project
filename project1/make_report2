@@ -1,0 +1,46 @@
+#!/usr/bin/gawk -f
+
+#
+# this script collects purchase totals based on column 5 (gender) and places
+# them in appropriate arrays it then generates a file containing the contents 
+# of the arrays
+#
+
+
+BEGIN {
+FS=","
+}
+
+{
+	if($5 == "m") 
+	{
+		males[$12] += $6
+	}
+	else if($5 == "f")
+	{
+		females[$12] += $6
+	}
+}
+
+END {
+
+print "Purchase Summary Report" >> "purchase-rpt"
+print "" >> "purchase-rpt"
+print "State""\t""Gender""\t""Purchase Amount" >> "purchase-rpt"
+
+	for(i in males)
+	{
+		print toupper(i)"\t""M""\t"males[i] >> "purchase-rpt"
+	}
+
+	for(i in females)
+	{
+		print toupper(i)"\t""F""\t"females[i] >> "purchase-rpt"
+	}
+
+}
+
+
+
+
+

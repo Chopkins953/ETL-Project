@@ -1,0 +1,18 @@
+#!/usr/bin/gawk -f
+
+#
+# this script 
+#
+
+BEGIN {FS=","}
+
+#$12 ~ /na/ {print}
+#$12 ~ /NA/ {print}
+#$12 ~ /\s+/ {print}
+{
+	#if (!$12) print
+	if($12 == "" || $12 ~ /na/) print >> "exceptions.csv"
+		else print >> "temptransaction"
+
+
+}

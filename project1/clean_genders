@@ -1,0 +1,23 @@
+#!/usr/bin/gawk -f
+
+#
+# this script runs through a file and checks the value of the 5th 
+# column agains 4 regular expressions. if any are encountered it replaces
+# that column value otherwise it replaces the column value with a u
+#
+
+
+BEGIN {
+OFS = ","
+FS = ","
+
+}
+
+{
+	if ($5 ~ /1/) $5 = "f" 
+		else if ($5 ~ /0/) $5 = "m"  
+			else if ($5 ~ /female/) $5 = "f"
+				else if ($5 ~ /male/) $5 = "m"
+				else $5 = "u"
+	print >> "gender_temp" 					
+}

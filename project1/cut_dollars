@@ -1,0 +1,19 @@
+#!/usr/bin/gawk -f
+
+#
+# this file substitutes a dollar sign with a blank string if the argument matches
+#
+
+BEGIN{
+FS=","
+OFS=","
+}
+{
+	sub(/^\$/, "", $6)
+	print >> "cutfile"
+}
+
+
+
+
+
